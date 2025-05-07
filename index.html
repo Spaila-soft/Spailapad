@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spailãpad</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="shortcut icon" href="Spailãpad.png" type="image/x-icon">
+  <script src="js/bootstrap.bundle.js"></script>
+     <!-- PWA meta tags -->
+  <meta name="theme-color" content="#ffffff">
+  <link rel="apple-touch-icon" href="Spailãpad.png">
+  <link rel="manifest" href="manifest.json">
+
+      <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js").then(() => {
+        console.log("Service Worker Registered");
+      }).catch((err) => {
+        console.log("Service Worker failed:", err);
+      });
+    }
+  </script>
+  <style>
+    body {
+     background-position:  center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: url('background.gif');
+      color: black;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+
+    }
+ .searchbar{
+        width: 100%;
+        max-width: 300px;
+        display: inline-flex;
+    }
+    #searchInput {
+    flex-grow: 1;
+    padding: 10px;
+    outline: none;
+    border:1px double #1F51FF;
+    border-radius:10px 0 0 10px ;
+    background: white;
+    transition:background 0.25s, box-shadow 0.25s;
+    
+    
+        
+    }
+    #searchInput:focus{
+        background: white;
+        box-shadow: 0 0 2px #2b6dff;
+        
+    }
+    searcbar__input::placeholder{
+        color:#2b6dff ;
+        
+    }
+  #micButton{
+        width:40px ;
+        background:#2b6dff ;
+        color: white;
+        outline:none;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0 10px 10px 0;
+        cursor: pointer;
+        user-select: none;
+    }
+    #micButton:active{
+         box-shadow: inset 0 0 30px rgba(0,0,0,0.25);
+     }
+  
+    .result {
+      background: #154dffb6;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      color:oldlace;
+    }
+    iframe {
+      width: 100%;
+      height: 300px;
+      margin-top: 1rem;
+      border-radius: 8px;
+    }
+
+  
+    footer{
+        background:#1F51FF ;
+        width: 110%;
+        text-align: center;
+        position: fixed;
+        bottom: 0px;
+        left: -7px; 
+    }
+       #links{
+           text-decoration: none;
+           
+       }
+       #links:active{
+       color: white;
+           
+       }
+    
+    
+  </style>
+</head>
+<body>
+  <div class="searchbar">
+   <input type="text" id="searchInput" placeholder="Topic please 😎" />
+   <button type="button" id="micButton" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-mic-fill" viewBox="0 0 16 16">
+  <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0z"/>
+  <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"/>
+</svg>
+</button>
+     
+    </div> 
+       <br>
+           <br>
+
+
+  <button type="button" id="madal2"class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2" style="margin:15px">  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
+  <path d="M15.545 6.558a9.4 9.4 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.7 7.7 0 0 1 5.352 2.082l-2.284 2.284A4.35 4.35 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.8 4.8 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z"/>
+</svg>
+
+</button>
+
+  <button type="button" id="madal3"class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal3"style="margin:15px">  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-music-note-beamed" viewBox="0 0 16 16">
+  <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13s1.12-2 2.5-2 2.5.896 2.5 2m9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2"/>
+  <path fill-rule="evenodd" d="M14 11V2h1v9zM6 3v10H5V3z"/>
+  <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4z"/>
+</svg>
+
+</button>
+
+
+
+
+            
+<!
+<!-- Modal2 -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Spailã search</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<div class="gcse-search"></div>
+      </div>
+      <div class="modal-footer">
+     Sponsored by Google 
+     
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal3 -->
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title  fs-5" id="exampleModalLabel">Study songs</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<audio controls loop src="songs/s1.m4a">
+    
+</audio>
+<audio controls loop src="songs/s2.m4a">
+    
+</audio>
+<audio controls loop src="songs/s3.m4a">
+    
+</audio>
+<audio controls loop src="songs/s4.m4a">
+    
+</audio>
+<audio controls loop src="songs/s5.mp3">
+    
+</audio>
+      </div>
+      <div class="modal-footer">
+        Stay tuned🫡, updates🌟 will come unexpected😲.
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="card-columns">
+
+  <script async src="https://cse.google.com/cse.js?cx=438c21465d8fc4cf7">
+</script>
+
+
+  <br>
+  
+</div>
+  <div id="answer" class="result "></div>
+  <div id="explanation" class="result"></div>
+  <div id="videos" class="result"></div>
+<footer class="">Powered by <a class="alert-link " id="links" href="https://whatsapp.com/channel/0029Vb77X8xHAdNb7AGUmD0O">Spailã ❤️<img src="Spailã.png" width="15" alt="Spailã logo"></a></footer>
+  <script>
+    const API_KEY = 'AIzaSyDkdXhTEtW4xWjwZ8bmZRxGIdCTBhgAtik'; // Replace with your real YouTube API key
+
+    const speak = (text) => {
+      if ('speechSynthesis' in window) {
+        const msg = new SpeechSynthesisUtterance(text);
+        msg.lang = 'en-US';
+        speechSynthesis.speak(msg);
+      }
+    };
+
+    document.getElementById('searchInput').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        const query = this.value.trim();
+        if (!query) return;
+        getAnswer(query);
+        getExplanation(query);
+        getVideos(query);
+      }
+    });
+
+    // ---------- Answer Section ----------
+    async function getAnswer(query) {
+      const answerBox = document.getElementById('answer');
+      answerBox.innerHTML = 'answer loading';
+
+      try {
+        const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${query}`);
+        const data = await res.json();
+        const def = data[0]?.meanings[0]?.definitions[0]?.definition;
+        if (def) {
+          answerBox.innerHTML = `<strong>Answer:</strong> ${def}`;
+          speak(def);
+          return;
+        }
+      } catch {}
+
+      try {
+        const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`);
+        const data = await res.json();
+        if (data.extract) {
+          answerBox.innerHTML = `<strong>Answer:</strong> ${data.extract}`;
+          speak(data.extract);
+          return;
+        }
+      } catch {}
+
+      try {
+        const res = await fetch(`https://api.duckduckgo.com/?q=${encodeURIComponent(query)}&format=json`);
+        const data = await res.json();
+        if (data.Abstract) {
+          answerBox.innerHTML = `<strong>Answer:</strong> ${data.Abstract}`;
+          speak(data.Abstract);
+          return;
+        }
+      } catch {}
+
+      answerBox.innerHTML = 'Answer: No reliable answer found.';
+    }
+
+    // ---------- Explanation Section ----------
+    async function getExplanation(query) {
+      const explanationBox = document.getElementById('explanation');
+      explanationBox.innerHTML = 'related concepts Loading...';
+
+      try {
+        const res = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}`);
+        const data = await res.json();
+        const explain = data.docs[0]?.title_suggest;
+        if (explain) {
+          explanationBox.innerHTML = `<strong>Explanation:</strong> Related book: ${explain}`;
+          speak(`Explanation: ${explain}`);
+          return;
+        }
+      } catch {}
+
+      try {
+        const res = await fetch(`https://api.quotable.io/random?tags=education|wisdom`);
+        const data = await res.json();
+        explanationBox.innerHTML = `<strong>Explanation:</strong> Quote: ${data.content} — ${data.author}`;
+        speak(data.content);
+        return;
+      } catch {}
+
+      try {
+        const res = await fetch(`https://api.datamuse.com/words?ml=${encodeURIComponent(query)}`);
+        const data = await res.json();
+        const related = data.slice(0, 5).map(w => w.word).join(', ');
+        explanationBox.innerHTML = `<strong>Explanation:</strong> Related concepts: ${related}`;
+        speak(`Related words: ${related}`);
+        return;
+      } catch {}
+
+      explanationBox.innerHTML = 'Explanation: No related  found.';
+    }
+
+    // ---------- YouTube Videos ----------
+    async function getVideos(query) {
+      const videoBox = document.getElementById('videos');
+      videoBox.innerHTML = 'Loading videos...';
+
+      try {
+        const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&type=video&maxResults=20&key=${API_KEY}`);
+        const data = await res.json();
+        const videoHTML = data.items.map(video => {
+          return `<iframe src="https://www.youtube.com/embed/${video.id.videoId}" allowfullscreen></iframe>`;
+        }).join('');
+        videoBox.innerHTML = `<strong>Related Videos:</strong><br/>` + videoHTML;
+      } catch {
+        videoBox.innerHTML = 'No videos found.';
+      }
+    }
+
+    // ---------- Microphone Button for Voice Input ----------
+    document.getElementById('micButton').addEventListener('click', () => {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.start();
+
+      recognition.onresult = (event) => {
+        const query = event.results[0][0].transcript;
+        document.getElementById('searchInput').value = query;
+        getAnswer(query);
+        getExplanation(query);
+        getVideos(query);
+      };
+
+      recognition.onerror = (event) => {
+        alert("Error with speech recognition: " + event.error);
+      };
+    });
+    alert('Please click the Spailã name at the bottom and please🙏 follow🥳 the Spailã innovation to get more🤩 ')
+    
+  </script>
+
+</body>
+</html>

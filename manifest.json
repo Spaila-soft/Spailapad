@@ -1,0 +1,21 @@
+{
+  "name": "Spailãpad",
+  "short_name": "Spailãpad",
+  "start_url": "/Spailãpad/index.html",
+  "scope": "/Spailãpad/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1F51FF",
+  "icons": [
+    {
+      "src": "Spailãpad.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "Spailãpad.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

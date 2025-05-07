@@ -33,6 +33,21 @@
       padding: 2rem;
 
     }
+    html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.elfsight-app {
+  position: fixed !important;
+  bottom: 0;
+  right: 0;
+  z-index: 9999;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+}
  .searchbar{
         width: 100%;
         max-width: 300px;
@@ -91,13 +106,15 @@
     }
 
   
-    footer{
+   footer{
         background:#1F51FF ;
-        width: 110%;
+        
         text-align: center;
         position: fixed;
         bottom: 0px;
-        left: -7px; 
+        width: 100vw;
+         left: 0;
+     
     }
        #links{
            text-decoration: none;
@@ -341,6 +358,7 @@
     alert('Please click the Spailã name at the bottom and please🙏 follow🥳 the Spailã innovation to get more🤩 ')
     
   </script>
-
+<!-- Elfsight AI Chatbot | Untitled AI Chatbot --> <script src="https://static.elfsight.com/platform/platform.js" async></script> 
+  <div class="elfsight-app-96bdaaba-e5ed-4ad4-a8df-ec0e1637e6c6" data-elfsight-app-lazy></div>
 </body>
 </html>
